@@ -222,7 +222,7 @@ export default function Home() {
 
       {/* ── STATS ────────────────────────────────────────────────────────────── */}
       <div className="border-y border-border/50">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-8">
+        <div className="mx-auto max-w-7xl md:max-w-none px-6 lg:px-8 py-8">
           <dl className="grid grid-cols-2 sm:grid-cols-4 gap-y-8 gap-x-6">
             {stats.map(({ value, label, icon: Icon }) => (
               <div key={label} className="flex flex-col items-center text-center gap-1">
@@ -241,7 +241,7 @@ export default function Home() {
         aria-labelledby="leaderboard-heading"
         className="py-16 sm:py-24 scroll-mt-24"
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl md:max-w-none px-6 lg:px-8">
           <SectionHeader
             headingId="leaderboard-heading"
             eyebrow="Independent Benchmarks"
@@ -259,7 +259,7 @@ export default function Home() {
         aria-labelledby="quiz-heading"
         className="py-16 sm:py-24 bg-secondary/10 border-y border-border/40 scroll-mt-24"
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl md:max-w-none px-6 lg:px-8">
           <SectionHeader
             headingId="quiz-heading"
             eyebrow="Recommendation Engine"
@@ -277,7 +277,7 @@ export default function Home() {
         aria-labelledby="updates-heading"
         className="py-16 sm:py-24 scroll-mt-24"
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl md:max-w-none px-6 lg:px-8">
           <SectionHeader
             headingId="updates-heading"
             eyebrow="Market Updates — July 2026"
@@ -308,7 +308,7 @@ export default function Home() {
         aria-labelledby="compare-heading"
         className="py-16 sm:py-24 bg-secondary/10 border-y border-border/40 scroll-mt-24"
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl md:max-w-none px-6 lg:px-8">
           <SectionHeader
             headingId="compare-heading"
             eyebrow="Provider Comparison"
@@ -347,7 +347,7 @@ export default function Home() {
         aria-labelledby="calculator-heading"
         className="py-16 sm:py-24 scroll-mt-24"
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl md:max-w-none px-6 lg:px-8">
           <SectionHeader
             headingId="calculator-heading"
             eyebrow="Pricing Calculator"
@@ -375,7 +375,7 @@ export default function Home() {
         aria-labelledby="use-cases-heading"
         className="py-16 sm:py-24 bg-secondary/10 border-t border-border/40 scroll-mt-24"
       >
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        <div className="mx-auto max-w-7xl md:max-w-none px-6 lg:px-8">
           <SectionHeader
             headingId="use-cases-heading"
             eyebrow="Community Picks"

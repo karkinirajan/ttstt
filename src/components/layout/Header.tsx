@@ -54,7 +54,7 @@ export function Header() {
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl md:max-w-none px-4 sm:px-6 lg:px-8">
                 <div className="glass mt-4 rounded-2xl flex h-16 items-center justify-between px-5 sm:px-6">
 
                     {/* Brand */}
