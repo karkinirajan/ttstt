@@ -54,7 +54,7 @@ export function Header() {
 
     return (
         <header className="fixed top-0 left-0 right-0 z-50">
-            <div className="mx-auto max-w-7xl md:max-w-none px-4 sm:px-6 lg:px-8">
+            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="glass mt-4 rounded-2xl flex h-16 items-center justify-between px-5 sm:px-6">
 
                     {/* Brand */}
@@ -66,7 +66,7 @@ export function Header() {
                         <div className="rounded-full overflow-hidden shrink-0">
                             <BrandIcon size={30} />
                         </div>
-                        <span className="text-lg font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/60">
+                        <span className="font-display text-lg font-extrabold tracking-tight bg-clip-text text-transparent bg-gradient-to-r from-foreground to-foreground/60">
                             TTSTT
                         </span>
                     </Link>

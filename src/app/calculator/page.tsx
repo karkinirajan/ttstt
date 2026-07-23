@@ -16,7 +16,7 @@ export const metadata: Metadata = {
 
 export default function CalculatorPage() {
     return (
-        <div className="mx-auto max-w-7xl md:max-w-none px-6 lg:px-8 py-12">
+        <div className="mx-auto max-w-7xl px-6 lg:px-8 py-12">
             <Link
                 href="/#calculator"
                 className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary rounded"
