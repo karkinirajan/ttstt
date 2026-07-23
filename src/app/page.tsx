@@ -69,38 +69,38 @@ const marketUpdates = [
   {
     badge: "NEW",
     badgeClass: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-    title: "Mistral Voxtral (Mar 26)",
-    body: "4B-parameter open-weight model, 90ms TTFA, runs on smartphones with 3 GB RAM. $16/1M chars.",
+    title: "Alibaba tops the leaderboard",
+    body: "Qwen-Audio-3.0-TTS-Plus takes #1 on the Artificial Analysis Speech Arena, ahead of Speechify Simba and Gemini 3.1 Flash TTS.",
   },
   {
     badge: "NEW",
     badgeClass: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-    title: "Microsoft MAI (Apr 3)",
-    body: "MAI-Transcribe-1 achieves 3.8% WER — beats Whisper-large-v3 on 22 of 25 languages.",
+    title: "AssemblyAI Sync API (Jul 14)",
+    body: "One HTTP POST returns a finished Universal-3.5 Pro transcript in ~134ms median — no polling or WebSocket.",
   },
   {
     badge: "NEW",
     badgeClass: "text-emerald-400 bg-emerald-500/10 border-emerald-500/20",
-    title: "xAI Grok TTS (Mar 16)",
-    body: "OpenAI Realtime API-compatible format enables drop-in migration from existing stacks.",
+    title: "Gemini 3.1 Flash TTS (Apr 15)",
+    body: "Natural-language style control via 200+ audio tags, 70+ languages, SynthID watermarking on every output.",
   },
   {
     badge: "MILESTONE",
     badgeClass: "text-blue-400 bg-blue-500/10 border-blue-500/20",
-    title: "ElevenLabs — $11B",
-    body: "$500M Series D led by Sequoia. On-premise/on-device now available. $330M+ ARR.",
+    title: "Deepgram — $1.3B",
+    body: "$130M Series C (Jan 13) funds the OfOne acquisition; Flux Multilingual (Apr 29) adds sub-300ms turn detection.",
   },
   {
     badge: "OPEN SOURCE",
     badgeClass: "text-purple-400 bg-purple-500/10 border-purple-500/20",
     title: "Chatterbox beats ElevenLabs",
-    body: "MIT-licensed model preferred by 63.75% of evaluators in blind tests. Free, 23 languages.",
+    body: "Chatterbox-Turbo (MIT) preferred by 65.3% of evaluators vs. ElevenLabs' 24.5% in blind tests.",
   },
   {
     badge: "SHUTDOWN",
     badgeClass: "text-red-400 bg-red-500/10 border-red-500/20",
     title: "PlayHT — Discontinued",
-    body: "Shut down Dec 31, 2025 after Meta acquisition. Migrate to ElevenLabs or Chatterbox.",
+    body: "Terminated Dec 31, 2025 after Meta acquisition; domain no longer resolves. Migrate to ElevenLabs or Chatterbox.",
   },
 ];
 
@@ -109,8 +109,8 @@ const useCases = [
     title: "Real-time Voice Agent",
     icon: "⚡",
     picks: [
-      "Cartesia Sonic — 40ms TTFA",
-      "Inworld TTS-1.5 Mini — <130ms",
+      "Cartesia Sonic 3.5 — 40ms TTFA",
+      "Inworld Realtime TTS-2 — 130ms",
       "ElevenLabs Flash v2.5 — ~75ms",
     ],
   },
@@ -118,9 +118,9 @@ const useCases = [
     title: "Highest Quality TTS",
     icon: "✨",
     picks: [
-      "Inworld TTS-1.5 Max (ELO 1,236)",
-      "ElevenLabs v3 (ELO 1,197)",
-      "Fish Audio S2 Pro (ELO 1,128 — open)",
+      "Alibaba Qwen-Audio-3.0-TTS-Plus (ELO 1,234)",
+      "Speechify Simba 3.2 (ELO 1,230)",
+      "Gemini 3.1 Flash TTS (ELO 1,215)",
     ],
   },
   {
@@ -164,7 +164,7 @@ const useCases = [
 const stats = [
   { value: "20+", label: "Providers Tracked", icon: BarChart3 },
   { value: "$11B", label: "ElevenLabs Valuation", icon: TrendingUp },
-  { value: "67+", label: "Models on Artificial Analysis", icon: Cpu },
+  { value: "70+", label: "Models on Artificial Analysis", icon: Cpu },
   { value: "Aug 2", label: "EU AI Act Deadline '26", icon: Shield },
 ];
 
@@ -178,7 +178,7 @@ export default function Home() {
       <section className="relative px-6 lg:px-8 py-20 sm:py-28 lg:py-32 overflow-hidden">
         <div className="mx-auto max-w-4xl text-center relative z-10">
           <div className="inline-flex items-center rounded-full border border-primary/20 bg-primary/10 px-3 py-1 text-xs font-semibold tracking-wide text-primary mb-8">
-            Updated April 2026 &mdash; Mistral Voxtral · xAI Grok · Microsoft MAI
+            Updated July 2026 &mdash; Alibaba tops the board · AssemblyAI Sync API · Gemini 3.1 Flash TTS
           </div>
 
           <h1 className="text-4xl sm:text-6xl font-extrabold tracking-tight leading-[1.05] mb-6">
@@ -194,7 +194,7 @@ export default function Home() {
           <p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
             Real benchmarks. Transparent pricing. Guided recommendations.
             <br className="hidden sm:block" />
-            20+ TTS &amp; STT providers, updated for April 2026.
+            20+ TTS &amp; STT providers, updated for July 2026.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -265,7 +265,7 @@ export default function Home() {
             eyebrow="Recommendation Engine"
             icon={Wand2}
             title="Find Your Perfect Stack"
-            description="Answer 3 questions to get a personalised recommendation rooted in April 2026 benchmarks."
+            description="Answer 3 questions to get a personalised recommendation rooted in July 2026 benchmarks."
           />
           <RecommendationWizard />
         </div>
@@ -280,10 +280,10 @@ export default function Home() {
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionHeader
             headingId="updates-heading"
-            eyebrow="Market Updates — April 2026"
+            eyebrow="Market Updates — July 2026"
             icon={Newspaper}
             title="What Changed This Quarter"
-            description="Three new entrants, open-source models beating commercial leaders, and one major shutdown."
+            description="A new leaderboard leader, a sub-150ms transcript API, and open-source models still beating commercial leaders."
           />
           <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {marketUpdates.map(({ badge, badgeClass, title, body }) => (
@@ -331,10 +331,11 @@ export default function Home() {
           <div className="mt-8 flex gap-3 items-start rounded-xl border border-amber-500/20 bg-amber-500/5 p-4">
             <AlertTriangle className="h-4 w-4 text-amber-400 shrink-0 mt-0.5" aria-hidden="true" />
             <p className="text-xs text-amber-200/80 leading-relaxed">
-              <span className="font-semibold text-amber-300">EU AI Act Article 50 — August 2, 2026.</span>
+              <span className="font-semibold text-amber-300">EU AI Act Article 50 — August 2, 2026 (10 days away).</span>
               {" "}All voice AI systems must disclose AI origin, mark synthetic audio in machine-readable format,
-              and comply with emotion recognition restrictions. California CAITA aligns to the same date.
-              Penalties up to €30M or 7% of global turnover.
+              and comply with emotion recognition restrictions. The May 2026 Omnibus agreement grants systems already
+              on the market an extension to Dec 2, 2026 for machine-readable marking specifically. California CAITA
+              aligns to the same date. Penalties up to €30M or 7% of global turnover.
             </p>
           </div>
         </div>

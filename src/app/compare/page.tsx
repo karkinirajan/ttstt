@@ -6,7 +6,7 @@ import { ComparisonMatrix } from "@/components/matrix/ComparisonMatrix";
 export const metadata: Metadata = {
     title: "Compare TTS & STT Providers",
     description:
-        "Full comparison matrix for 20+ voice AI providers — benchmarks, pricing, ELO scores, WER, features, and compliance certifications. Updated April 2026.",
+        "Full comparison matrix for 20+ voice AI providers — benchmarks, pricing, ELO scores, WER, features, and compliance certifications. Updated July 2026.",
     openGraph: {
         title: "Compare TTS & STT Providers | VoiceTech 2026",
         description:
@@ -32,7 +32,7 @@ export default function ComparePage() {
                 <p className="text-muted-foreground max-w-2xl">
                     Benchmarks, pricing models, ELO scores, word error rates, feature sets,
                     and compliance certifications across every active TTS &amp; STT provider.
-                    Updated April 2026.
+                    Updated July 2026.
                 </p>
             </header>
 

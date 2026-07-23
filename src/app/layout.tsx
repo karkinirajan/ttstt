@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     template: "%s | VoiceTech 2026",
   },
   description:
-    "The independent comparison platform for TTS & STT AI voice providers. Real benchmarks, transparent pricing, and guided recommendations for ElevenLabs, Deepgram, OpenAI, Cartesia, Azure, Google, AssemblyAI, Mistral Voxtral, Inworld AI, and 20+ providers. Updated April 2026.",
+    "The independent comparison platform for TTS & STT AI voice providers. Real benchmarks, transparent pricing, and guided recommendations for ElevenLabs, Deepgram, OpenAI, Cartesia, Azure, Google, AssemblyAI, Mistral Voxtral, Inworld AI, and 20+ providers. Updated July 2026.",
   keywords: [
     "TTS", "STT", "text to speech", "speech to text", "voice AI",
     "ElevenLabs", "Deepgram", "OpenAI TTS", "Whisper", "Cartesia",
@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     siteName: "VoiceTech 2026",
     title: "VoiceTech 2026 | TTS & STT Intelligence Radar",
     description:
-      "Independent comparison of 20+ TTS & STT providers. Real benchmarks, transparent pricing. Updated April 2026 with Mistral Voxtral, xAI Grok, Microsoft MAI, and open-source models.",
+      "Independent comparison of 20+ TTS & STT providers. Real benchmarks, transparent pricing. Updated July 2026 with Alibaba Qwen-Audio-3.0-TTS-Plus, Gemini 3.1 Flash TTS, AssemblyAI Sync API, and open-source models.",
   },
   twitter: {
     card: "summary",
@@ -61,7 +61,7 @@ export const metadata: Metadata = {
     creator: "@kneeraazon",
     title: "VoiceTech 2026 | TTS & STT Intelligence Radar",
     description:
-      "Independent comparison of 20+ TTS & STT providers. Real benchmarks, transparent pricing. Updated April 2026.",
+      "Independent comparison of 20+ TTS & STT providers. Real benchmarks, transparent pricing. Updated July 2026.",
   },
   robots: {
     index: true,

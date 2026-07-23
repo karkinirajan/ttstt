@@ -346,7 +346,7 @@ export function ComparisonMatrix() {
 
             <p className="mt-4 text-xs text-muted-foreground text-center">
                 Data sourced from Artificial Analysis Speech Arena, HuggingFace Open ASR Leaderboard, and official provider documentation.
-                All prices approximate as of April 2026. Benchmark scores may vary by use case.
+                All prices approximate as of July 2026. Benchmark scores may vary by use case.
             </p>
         </div>
     );
