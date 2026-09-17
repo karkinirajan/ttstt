@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { providers, Provider } from "@/data/providers";
+import { scoredProviders, ScoredProvider } from "@/data/providers";
 import { ArrowRight, RefreshCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -60,10 +60,10 @@ export function RecommendationWizard() {
         volume: null,
         priority: null,
     });
-    const [recommendations, setRecommendations] = useState<Provider[]>([]);
+    const [recommendations, setRecommendations] = useState<ScoredProvider[]>([]);
 
     function calculateRecommendations(finalState: QuizState) {
-        const scored = providers
+        const scored = scoredProviders
             .filter((p) => p.status !== "discontinued")
             .map((p) => {
                 let score = 0;
