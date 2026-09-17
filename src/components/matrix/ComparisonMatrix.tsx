@@ -174,6 +174,11 @@ export function ComparisonMatrix() {
                                 <td key={p.id} className="p-4 align-top">
                                     {p.status === "discontinued" ? (
                                         <span className="text-sm text-red-400 font-medium">Service discontinued</span>
+                                    ) : p.pricingNote ? (
+                                        <div className="text-sm">
+                                            <p>{p.pricingNote}</p>
+                                            {p.pricingUrl && <a href={p.pricingUrl} target="_blank" rel="noopener noreferrer" className="text-primary underline">Provider pricing</a>}
+                                        </div>
                                     ) : (
                                         p.pricing.map((tier, i) => (
                                             <div key={i} className="text-sm mb-1">
@@ -197,13 +202,14 @@ export function ComparisonMatrix() {
                             {filteredProviders.map((p) => (
                                 <td key={p.id} className="p-4 align-top">
                                     <div className="space-y-2 text-sm">
+                                        {p.benchmarks ? <>
                                         <div className="flex justify-between items-center gap-2">
                                             <span>Quality</span>
                                             <div className="flex gap-0.5" role="img" aria-label={`${p.benchmarks.quality} out of 5`}>
                                                 {[...Array(5)].map((_, i) => (
                                                     <div
                                                         key={i}
-                                                        className={cn("h-1.5 w-3 rounded-full", i < p.benchmarks.quality ? "bg-primary" : "bg-muted")}
+                                                        className={cn("h-1.5 w-3 rounded-full", p.benchmarks && i < p.benchmarks.quality ? "bg-primary" : "bg-muted")}
                                                     />
                                                 ))}
                                             </div>
@@ -214,11 +220,12 @@ export function ComparisonMatrix() {
                                                 {[...Array(5)].map((_, i) => (
                                                     <div
                                                         key={i}
-                                                        className={cn("h-1.5 w-3 rounded-full", i < p.benchmarks.speed ? "bg-green-500" : "bg-muted")}
+                                                        className={cn("h-1.5 w-3 rounded-full", p.benchmarks && i < p.benchmarks.speed ? "bg-green-500" : "bg-muted")}
                                                     />
                                                 ))}
                                             </div>
                                         </div>
+                                        </> : <span>Not scored</span>}
                                         {p.eloScore && (
                                             <div className="text-xs text-primary font-mono font-bold">
                                                 ELO {p.eloScore.toLocaleString()}

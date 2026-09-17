@@ -22,7 +22,9 @@ export interface Provider {
     description: string;
     website: string;
     pricing: PricingTier[];
-    benchmarks: BenchmarkScores;
+    benchmarks?: BenchmarkScores;
+    pricingNote?: string;
+    pricingUrl?: string;
     features: string[];
     languages: number;
     bestFor: string[]; // e.g., 'voice-agent', 'audiobook', 'transcription'
@@ -36,6 +38,22 @@ export interface Provider {
 }
 
 export const providers: Provider[] = [
+    // Sources checked 2026-09-17: https://docs.gradium.ai/guides/faq,
+    // https://docs.gradium.ai/ and https://gradium.ai/pricing.
+    {
+        id: 'gradium',
+        name: 'Gradium',
+        type: 'BOTH',
+        description: 'Real-time voice AI platform: streaming text-to-speech and speech-to-text with semantic turn detection for voice agents, live speech-to-speech translation, instant voice cloning, and voice design from a text prompt. Supports English, French, German, Spanish, and Portuguese.',
+        website: 'https://gradium.ai',
+        pricing: [],
+        pricingNote: 'Monthly credit plans. XS: $13/month for 225,000 shared credits. TTS: 1 credit/character; STT: 3 credits/second. Free plan available for non-commercial use. Excluded from the usage-only calculator because it does not model shared credits or subscription minimums.',
+        pricingUrl: 'https://gradium.ai/pricing',
+        features: ['Streaming TTS and STT', 'REST and WebSocket APIs', 'Voice cloning', 'Voice Design from text descriptions', 'Semantic VAD for turn-taking'],
+        languages: 5,
+        bestFor: ['voice-agent', 'content-creation', 'transcription'],
+        status: 'active',
+    },
     // ─── TIER 1: INDUSTRY LEADERS ───────────────────────────────────────────────
     {
         id: 'inworld',
@@ -413,3 +431,10 @@ export const providers: Provider[] = [
         status: 'discontinued',
     },
 ];
+
+export type ScoredProvider = Provider & { benchmarks: BenchmarkScores };
+
+// Unscored listings remain in the comparison matrix, but do not receive a rank.
+export const scoredProviders = providers.filter(
+    (provider): provider is ScoredProvider => provider.benchmarks !== undefined
+);

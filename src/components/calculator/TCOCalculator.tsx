@@ -19,7 +19,7 @@ export function TCOCalculator() {
 
     const chartData = useMemo(() => {
         const relevantProviders = providers.filter(
-            (p) => (p.type === useCase || p.type === "BOTH") && p.status !== "discontinued"
+            (p) => (p.type === useCase || p.type === "BOTH") && p.status !== "discontinued" && p.pricing.length > 0
         );
 
         return relevantProviders
