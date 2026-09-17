@@ -1,6 +1,6 @@
 "use client";
 
-import { providers } from "@/data/providers";
+import { scoredProviders } from "@/data/providers";
 import { useIsClient } from "@/hooks/useIsClient";
 import {
     ResponsiveContainer,
@@ -49,7 +49,7 @@ const CustomTooltip = ({ active, payload, label }: {
 export function Leaderboard() {
     const isClient = useIsClient();
 
-    const chartData = providers
+    const chartData = scoredProviders
         .filter((p) => p.status !== "discontinued")
         .map((p) => ({
             name: p.name.replace(" (Open Source)", "").replace("v1.0", "").trim(),
