@@ -4,8 +4,6 @@
 
 The only independent comparison platform for Text-to-Speech (TTS) and Speech-to-Text (STT). Real benchmarks, transparent pricing, and guided decision paths for your specific use case.
 
-![VoiceTech 2026 Hero](https://via.placeholder.com/1200x600?text=VoiceTech+2026+Platform)
-
 ## 🚀 Features
 
 -   **Interactive Leaderboard**: Visualize market leaders in Quality, Speed, Features, and Price using a comprehensive **Stacked Area Chart**.
