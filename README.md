@@ -10,7 +10,7 @@ The only independent comparison platform for Text-to-Speech (TTS) and Speech-to-
 -   **Recommendation Wizard**: Answer 3 simple questions (UseCase, Priority, Volume) to get a tailored tech stack recommendation.
 -   **TCO Calculator**: Estimate your monthly costs with precision, handling complex pricing tiers (characters vs seconds) and high-cost providers.
 -   **Comparison Matrix**: Deep-dive into feature-by-feature comparisons (Diarization, Cloning, Websockets, etc.) with sorting and filtering.
--   **Premium Aesthetic**: Built with a "dark mode first" design system using **Tailwind CSS v4** and **Geist Mono** typography for a technical, data-driven look.
+-   **Premium Aesthetic**: A dark-only design system built with **Tailwind CSS v4**, using Outfit, Plus Jakarta Sans and JetBrains Mono for a technical, data-driven look.
 
 ## 🛠️ Tech Stack
 
@@ -18,9 +18,10 @@ The only independent comparison platform for Text-to-Speech (TTS) and Speech-to-
 -   **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
 -   **Icons**: [Lucide React](https://lucide.dev/)
 -   **Charts**: [Recharts](https://recharts.org/)
--   **Animations**: [Framer Motion](https://www.framer.com/motion/)
--   **Font**: [Geist Mono](https://vercel.com/font)
--   **Language**: TypeScript
+-   **Animations**: CSS keyframes (`globals.css`)
+-   **Fonts**: Outfit, Plus Jakarta Sans, JetBrains Mono through `next/font`
+-   **Language**: TypeScript 6
+-   **Tests**: [Vitest](https://vitest.dev/) (215 tests, 108 mutation checks)
 
 ## 📂 Project Structure
 
@@ -34,22 +35,29 @@ src/
 │   └── page.tsx         # Home Page (Hero, Leaderboard, Wizard)
 ├── components/
 │   ├── calculator/      # TCO Chart & Logic
+│   ├── icons/           # Brand icon
 │   ├── layout/          # Header, Footer
 │   ├── leaderboard/     # Stacked Area Chart
 │   ├── matrix/          # Comparison Table
-│   └── wizard/          # Recommendation Engine
+│   └── wizard/          # Recommendation Engine (UI)
 ├── data/
 │   └── providers.ts     # Static Benchmark Data
+├── hooks/               # useIsClient
 └── lib/
+    ├── pricing.ts       # Monthly-cost arithmetic and the calculator's rows
+    ├── recommend.ts     # The wizard's scoring and ranking
+    ├── security-headers.ts  # CSP and the other response headers
     └── utils.ts         # Helper Functions
+test/                    # Vitest tests and test/mutation (the mutation driver and its list)
+docs/                    # Architecture, security, testing, operations
 ```
 
 ## ⚡ Getting Started
 
 ### Prerequisites
 
--   Node.js 18+
--   npm or pnpm
+-   Node.js 24 or newer (`.nvmrc` says 26)
+-   npm
 
 ### Installation
 
@@ -79,6 +87,25 @@ To create an optimized production build:
 npm run build
 npm start
 ```
+
+## 🧪 Checks
+
+```bash
+npm run check           # type-check, lint (zero warnings), tests
+npm run test:coverage   # tests with a coverage report
+npm run ci              # check + build
+```
+
+## 📚 Documentation
+
+| Chapter | Covers |
+|---|---|
+| [01 Architecture](docs/01-architecture.md) | How the data flows to the pages, where the logic lives, the pricing-tier fix, the dark-only theme |
+| [02 Security](docs/02-security.md) | What was looked at, the response headers, what is left |
+| [03 Testing](docs/03-testing.md) | The suites, coverage, the mutation checks, what was checked in a browser |
+| [04 Operations](docs/04-operations.md) | Commands, deploying, how to edit the data |
+| [VERSIONS.md](VERSIONS.md) | What it runs on and why |
+| [work-done.md](work-done.md) | What was there and what changed, file by file |
 
 ## 🤝 Contributing
 
