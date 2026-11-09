@@ -1,13 +1,11 @@
 "use client";
 
-import { useState } from "react";
-import { scoredProviders, ScoredProvider } from "@/data/providers";
+import { useMemo, useState } from "react";
+import { scoredProviders } from "@/data/providers";
+import { recommend, type Priority, type UseCase, type Volume } from "@/lib/recommend";
 import { ArrowRight, RefreshCcw } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-type UseCase = "voice-agent" | "content-creation" | "transcription" | "accessibility" | "budget";
-type Priority = "quality" | "speed" | "price";
-type Volume = "low" | "medium" | "high";
 type SelectionValue = UseCase | Priority | Volume;
 
 interface QuizState {
@@ -60,27 +58,12 @@ export function RecommendationWizard() {
         volume: null,
         priority: null,
     });
-    const [recommendations, setRecommendations] = useState<ScoredProvider[]>([]);
-
-    function calculateRecommendations(finalState: QuizState) {
-        const scored = scoredProviders
-            .filter((p) => p.status !== "discontinued")
-            .map((p) => {
-                let score = 0;
-                if (finalState.useCase && p.bestFor.includes(finalState.useCase)) score += 10;
-                if (finalState.useCase === "voice-agent" && p.benchmarks.speed >= 4) score += 5;
-                if (finalState.useCase === "content-creation" && p.benchmarks.quality >= 4.5) score += 5;
-                if (finalState.useCase === "budget" && p.benchmarks.priceScore >= 4) score += 10;
-                if (finalState.priority === "quality") score += p.benchmarks.quality * 2;
-                if (finalState.priority === "speed") score += p.benchmarks.speed * 2;
-                if (finalState.priority === "price") score += p.benchmarks.priceScore * 2;
-                return { ...p, score };
-            });
-
-        setRecommendations(
-            scored.sort((a, b) => b.score - a.score).slice(0, 3)
-        );
-    }
+    // Derived from the answers, not stored: it used to be computed (and another piece of state set) inside the updater passed to setState,
+    // which React may run twice.
+    const recommendations = useMemo(
+        () => (state.step === 4 ? recommend(scoredProviders, state) : []),
+        [state]
+    );
 
     function handleSelect(value: SelectionValue) {
         setState((prev) => {
@@ -88,21 +71,13 @@ export function RecommendationWizard() {
             if (prev.step === 1) next.useCase = value as UseCase;
             if (prev.step === 2) next.priority = value as Priority;
             if (prev.step === 3) next.volume = value as Volume;
-
-            if (prev.step < 3) {
-                next.step += 1;
-            } else {
-                next.step = 4;
-                // calculateRecommendations uses the finalised state, call after setState
-                calculateRecommendations(next);
-            }
+            next.step = Math.min(prev.step + 1, 4);
             return next;
         });
     }
 
     function reset() {
         setState({ step: 1, useCase: null, volume: null, priority: null });
-        setRecommendations([]);
     }
 
     return (

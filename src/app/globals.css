@@ -1,20 +1,24 @@
 @import "tailwindcss";
 
+/* The site is dark-only: <html class="dark"> in layout.tsx and every panel (.glass, the header, the cards) are drawn for a dark page. The
+   tokens used to switch to a light set on a light OS setting, which put light text on translucent grey panels (unreadable), so the dark
+   set is the only one. */
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a;
-  --primary: #3b82f6;
+  color-scheme: dark;
+  --background: #030712;
+  --foreground: #f8fafc;
+  --primary: #6366f1;
   --primary-foreground: #ffffff;
   --secondary: #1e293b;
   --secondary-foreground: #e2e8f0;
-  --muted: #f1f5f9;
-  --muted-foreground: #64748b;
-  --accent: #f1f5f9;
-  --accent-foreground: #0f172a;
-  --card: #ffffff;
-  --card-foreground: #0f172a;
-  --border: #e2e8f0;
-  --ring: #3b82f6;
+  --muted: #0f172a;
+  --muted-foreground: #94a3b8;
+  --accent: #1e293b;
+  --accent-foreground: #f8fafc;
+  --card: #0f172a;
+  --card-foreground: #f8fafc;
+  --border: #1e293b;
+  --ring: #6366f1;
 }
 
 @theme inline {
@@ -35,25 +39,6 @@
   --font-sans: var(--font-plus-jakarta);
   --font-display: var(--font-outfit);
   --font-mono: var(--font-jetbrains-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #030712;
-    --foreground: #f8fafc;
-    --primary: #6366f1;
-    --primary-foreground: #ffffff;
-    --secondary: #1e293b;
-    --secondary-foreground: #e2e8f0;
-    --muted: #0f172a;
-    --muted-foreground: #94a3b8;
-    --accent: #1e293b;
-    --accent-foreground: #f8fafc;
-    --card: #0f172a;
-    --card-foreground: #f8fafc;
-    --border: #1e293b;
-    --ring: #6366f1;
-  }
 }
 
 /* ─── Base ─────────────────────────────────────────────────────────────────── */
