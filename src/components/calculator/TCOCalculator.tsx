@@ -5,10 +5,8 @@ import { useIsClient } from "@/hooks/useIsClient";
 import { providers } from "@/data/providers";
 import { Bar, BarChart, CartesianGrid, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell } from "recharts";
 import { cn } from "@/lib/utils";
+import { CHARS_PER_HOUR, MINS_PER_HOUR, costRows, formatMonthlyCost, summarizeCosts } from "@/lib/pricing";
 import { Info } from "lucide-react";
-
-const CHARS_PER_HOUR = 15000; // ~15k characters per hour of synthesized audio
-const MINS_PER_HOUR = 60;
 
 export function TCOCalculator() {
     const isClient = useIsClient();
@@ -17,59 +15,10 @@ export function TCOCalculator() {
     const sliderId = useId();
     const useCaseId = useId();
 
-    const chartData = useMemo(() => {
-        const relevantProviders = providers.filter(
-            (p) => (p.type === useCase || p.type === "BOTH") && p.status !== "discontinued" && p.pricing.length > 0
-        );
-
-        return relevantProviders
-            .map((p) => {
-                let monthlyCost = 0;
-                const tier = p.pricing[0];
-
-                if (useCase === "TTS") {
-                    const charsPerMonth = audioHours * CHARS_PER_HOUR;
-                    if (tier.unitType === "char") {
-                        monthlyCost = (charsPerMonth / tier.unit) * tier.price;
-                    } else if (tier.unitType === "sec") {
-                        monthlyCost = (audioHours * 3600 / tier.unit) * tier.price;
-                    } else if (tier.unitType === "min") {
-                        monthlyCost = (audioHours * MINS_PER_HOUR / tier.unit) * tier.price;
-                    }
-                } else {
-                    const minutesPerMonth = audioHours * MINS_PER_HOUR;
-                    if (tier.unitType === "min") {
-                        monthlyCost = (minutesPerMonth / tier.unit) * tier.price;
-                    } else if (tier.unitType === "sec") {
-                        monthlyCost = (minutesPerMonth * 60 / tier.unit) * tier.price;
-                    }
-                }
-
-                return {
-                    name: p.name,
-                    id: p.id,
-                    cost: Math.round(monthlyCost * 100) / 100,
-                    openSource: p.openSource ?? false,
-                    isNew: p.isNew ?? false,
-                };
-            })
-            .filter((d) => d.cost > 0 || d.openSource) // keep $0 self-hosted open-source
-            .sort((a, b) => a.cost - b.cost);
-    }, [audioHours, useCase]);
+    const chartData = useMemo(() => costRows(providers, useCase, audioHours), [audioHours, useCase]);
 
     // Separate very high-cost outliers to keep chart readable
-    const p95 = useMemo(() => {
-        const costs = chartData.map((d) => d.cost).filter((c) => c > 0);
-        if (!costs.length) return Infinity;
-        costs.sort((a, b) => a - b);
-        return costs[Math.floor(costs.length * 0.9)] * 3; // 3× 90th percentile as cutoff
-    }, [chartData]);
-
-    const standardData = chartData.filter((d) => d.cost <= p95);
-    const outlierData = chartData.filter((d) => d.cost > p95);
-
-    const cheapest = standardData.find((d) => d.cost === Math.min(...standardData.filter((x) => x.cost > 0).map((x) => x.cost)));
-    const mostExpensive = standardData[standardData.length - 1];
+    const { standard: standardData, outliers: outlierData, cheapest, mostExpensive } = useMemo(() => summarizeCosts(chartData), [chartData]);
 
     return (
         <div className="bg-slate-900/40 backdrop-blur-xl rounded-3xl p-6 md:p-8 shadow-2xl border border-white/10 relative overflow-hidden">
@@ -252,12 +201,7 @@ export function TCOCalculator() {
                                                 padding: "12px",
                                                 boxShadow: "0 20px 25px -5px rgba(0,0,0,0.5)",
                                             }}
-                                            formatter={(value: number | undefined) => [
-                                                value === undefined ? "N/A" : value === 0
-                                                    ? "Free (self-hosted)"
-                                                    : `$${value.toFixed(2)}/month`,
-                                                "Estimated Cost",
-                                            ]}
+                                            formatter={(value) => [formatMonthlyCost(value), "Estimated Cost"]}
                                             labelStyle={{ color: "#fff", fontWeight: "bold", marginBottom: "4px" }}
                                         />
                                         <Bar dataKey="cost" radius={[0, 6, 6, 0]} barSize={32} animationDuration={800}>
@@ -315,7 +259,7 @@ export function TCOCalculator() {
                                         <Tooltip
                                             cursor={{ fill: "rgba(255,255,255,0.02)" }}
                                             contentStyle={{ backgroundColor: "rgba(15,23,42,0.95)", borderRadius: "12px", border: "1px solid rgba(255,255,255,0.1)", color: "#fff", padding: "12px" }}
-                                            formatter={(value: number | undefined) => [value !== undefined ? `$${value.toFixed(2)}/month` : "N/A", "Estimated Cost"]}
+                                            formatter={(value) => [formatMonthlyCost(value), "Estimated Cost"]}
                                             labelStyle={{ color: "#fff", fontWeight: "bold" }}
                                         />
                                         <Bar dataKey="cost" radius={[0, 6, 6, 0]} barSize={28} fill="url(#outlierGradient)" stroke="rgba(255,255,255,0.08)" />
