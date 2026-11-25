@@ -413,6 +413,33 @@ export const providers: Provider[] = [
         bestFor: ['accessibility', 'offline', 'budget'],
         openSource: true,
     },
+    // Sources checked 2026-11-25: https://oruk.ai/pricing, https://oruk.ai/benchmarks,
+    // https://huggingface.co/oruk/oruk-fourier-2b and
+    // https://huggingface.co/spaces/hf-audio/open_asr_leaderboard.
+    {
+        id: 'oruk-fourier-2b',
+        name: 'Oruk (Fourier 2B)',
+        type: 'STT',
+        description: '2.04B-parameter English ASR model (Qwen3-ASR architecture) offered as an OpenAI-compatible batch REST API at $0.0080/min ($0.48/hr) and as open weights on Hugging Face. Ranks #7/68 overall and #1 single-model open-weights on the Hugging Face Open ASR Leaderboard v1.16.3 (5.52% 9-dataset avg WER, 4.95% 7-public-split mean, 254x RTFx). Weights are licensed CC BY-NC 4.0 (free for non-commercial use; commercial use via hosted API or separate license).',
+        website: 'https://oruk.ai',
+        pricing: [
+            { name: 'Hosted API (oruk-fourier-2b)', price: 0.008, unit: 1, unitType: 'min', description: '$0.0080/min ($0.48/hr) — OpenAI-compatible REST batch API' },
+            { name: 'Open weights (CC BY-NC 4.0)', price: 0, unit: 1, unitType: 'min', description: 'Free — non-commercial only (BF16, GGUF, ONNX, MLX)' },
+        ],
+        pricingUrl: 'https://oruk.ai/pricing',
+        features: [
+            '5.52% Open ASR v1.16.3 Avg WER (#1 Single-Model Open-Weights)',
+            '4.95% 7-Public-Split Mean WER (254x RTFx)',
+            'OpenAI-Compatible Batch REST API ($0.0080/min)',
+            'Open Weights: BF16, GGUF, ONNX, MLX',
+            'CC BY-NC 4.0 Weights (Non-Commercial Free)',
+        ],
+        languages: 1,
+        bestFor: ['transcription', 'budget', 'offline'],
+        status: 'active',
+        openSource: true,
+        wer: 5.52,
+    },
 
     // ─── DISCONTINUED ────────────────────────────────────────────────────────────
     {
